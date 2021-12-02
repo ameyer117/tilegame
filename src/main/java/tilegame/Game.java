@@ -2,11 +2,18 @@ package tilegame;
 
 import tilegame.display.Display;
 
+import java.awt.*;
+import java.awt.image.BufferStrategy;
+
 public class Game implements Runnable {
 
+    private static int BUFFER_COUNT = 3;
+
+    private boolean running = false;
     private Display display;
     private Thread thread;
-    private boolean running = false;
+    private BufferStrategy bs;
+    private Graphics g;
 
     public String title;
     public int width;
@@ -27,7 +34,22 @@ public class Game implements Runnable {
     }
 
     private void render() {
+        // Memory used to draw on screen (prevents flickering)
+        bs = display.getCanvas().getBufferStrategy();
 
+        if(bs == null) {
+            display.getCanvas().createBufferStrategy(BUFFER_COUNT);
+            return;
+        }
+
+        g = bs.getDrawGraphics();
+
+        // Start drawing
+        g.fillRect(0, 0, width, height);
+
+        // End drawing
+        bs.show();
+        g.dispose();
     }
 
     @Override

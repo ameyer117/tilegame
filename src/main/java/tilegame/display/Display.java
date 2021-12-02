@@ -41,4 +41,8 @@ public class Display {
         // Resize frame to fit the canvas fully
         frame.pack();
     }
+
+    public Canvas getCanvas() {
+        return canvas;
+    }
 }
