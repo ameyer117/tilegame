@@ -1,9 +1,11 @@
 package tilegame;
 
 import tilegame.display.Display;
+import tilegame.gfx.ImageLoader;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable {
 
@@ -14,6 +16,9 @@ public class Game implements Runnable {
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
+
+    private BufferedImage testImage;
+
 
     public String title;
     public int width;
@@ -27,6 +32,7 @@ public class Game implements Runnable {
 
     private void init() {
         display = new Display(title, width, height);
+        testImage = ImageLoader.loadImage("/textures/smile.png");
     }
 
     private void tick() {
@@ -48,11 +54,7 @@ public class Game implements Runnable {
         clearScreen();
 
         // Start drawing
-        g.setColor(Color.red);
-        g.fillRect(10, 50, 50, 70);
-
-        g.setColor(Color.green);
-        g.fillRect(20, 50, 10, 10);
+        g.drawImage(testImage, 20, 20, null);
 
         // End drawing
         bs.show();
