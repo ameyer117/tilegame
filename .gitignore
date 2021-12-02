@@ -103,3 +103,4 @@ modules.xml
 
 # local gradle
 .gradle/
+build/tmp/compileJava/previous-compilation-data.bin
