@@ -44,12 +44,23 @@ public class Game implements Runnable {
 
         g = bs.getDrawGraphics();
 
+        // Important to clear the screen first
+        clearScreen();
+
         // Start drawing
-        g.fillRect(0, 0, width, height);
+        g.setColor(Color.red);
+        g.fillRect(10, 50, 50, 70);
+
+        g.setColor(Color.green);
+        g.fillRect(20, 50, 10, 10);
 
         // End drawing
         bs.show();
         g.dispose();
+    }
+
+    private void clearScreen() {
+        g.clearRect(0,0, width, height);
     }
 
     @Override
